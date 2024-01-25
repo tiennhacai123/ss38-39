@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  #img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 100; 
+    transition: opacity 2s;
+  }
+
+  #count {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    color: white;
+    opacity: 0;
+    transition: opacity 2s;
+  }
+</style>
+</head>
+<body>
+  <img id="img" src="https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-34.jpg?v=1692246426812" alt="Fullscreen Image">
+  <div id="count" style="color: rgb(255, 82, 82);"></div>
+
+  <script>
+    window.addEventListener('load', function() {
+      let img = document.getElementById('img');
+      let count = document.getElementById('count');
+      img.style.opacity = 0.1;
+      count.style.opacity = 1;
+      setTimeout(function() {
+        img.style.opacity = 1;
+      }, 1000); 
+
+      let countOpacity = 1;
+      let countInterval = setInterval(function() {
+        if (countOpacity <= 0) {
+          clearInterval(countInterval);
+        } else {
+          countOpacity -= 0.01;
+          count.style.opacity = countOpacity;
+          count.innerHTML = Math.round(countOpacity * 100) + "%";
+        }
+      }, 20);
+
+      setTimeout(function() {
+        count.style.opacity = 0;
+      }, 1000); 
+    });
+  </script>
+</body>
+</html>
